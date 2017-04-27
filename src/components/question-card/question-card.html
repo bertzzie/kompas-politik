@@ -1,0 +1,48 @@
+<md-card md-with-hover>
+  <md-card-header>
+    <div class="md-title">{{ title }}</div>
+  </md-card-header>
+
+  <md-card-content>
+    {{ content }}
+  </md-card-content>
+
+  <md-card-actions class="question-card-actions">
+    <md-button
+      class="question-card-button md-raised md-primary"
+      v-on:click.native="sangatSetujuClicked"
+    >
+      Sangat Setuju
+    </md-button>
+
+    <md-button
+      md-theme="teal"
+      class="question-card-button md-raised md-warn"
+      v-on:click.native="setujuClicked"
+    >
+      Setuju
+    </md-button>
+
+    <md-button
+      class="question-card-button md-raised"
+      v-on:click.native="netralClicked"
+    >
+      Tidak Tahu / Netral
+    </md-button>
+
+    <md-button
+      class="question-card-button md-raised md-warn"
+      v-on:click.native="tidakSetujuClicked"
+    >
+      Tidak Setuju
+    </md-button>
+
+    <md-button
+      class="question-card-button md-raised md-accent"
+      v-on:click.native="sangatTidakSetujuClicked"
+    >
+      Sangat Tidak Setuju
+    </md-button>
+
+  </md-card-actions>
+</md-card>

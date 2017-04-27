@@ -1,0 +1,49 @@
+{
+  "name": "kompas-politik",
+  "version": "0.0.1",
+  "description": "Test untuk menguji letak posisi politis anda",
+  "author": "Alex Xandra Albert Sim <bertzzie@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=7",
+    "npm": ">=4"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm run clean && npm run sass && npm run copy:vm && npm run build:parts && npm run process:html",
+    "build:parts": "npm run sass && npm run compile",
+    "clean": "rimraf dist && rimraf coverage",
+    "clean:css": "cleancss -o dist/css/main.min.css src/css/bootstrap.css src/css/main.css",
+    "compile": "webpack --config config/webpack.config.prod.js",
+    "copy:vm": "rsync -av --progress node_modules/vue-material/dist/* src/css/vue-material --exclude docs",
+    "dev": "cross-env NODE_ENV=development npm run sass && npm run copy:vm && concurrently --kill-others \"webpack-dev-server --hot --inline\" \"node-sass --watch --output ./src/css ./src/sass\"",
+    "process:html": "htmlprocessor src/index.html -o dist/index.html",
+    "sass": "node-sass --output ./src/css ./src/sass"
+  },
+  "dependencies": {
+    "vue": "^2.2.6",
+    "vue-class-component": "^5.0.1",
+    "vue-material": "^0.7.1",
+    "vue-property-decorator": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.13",
+    "awesome-typescript-loader": "^3.1.2",
+    "clean-css-cli": "^4.0.12",
+    "compression-webpack-plugin": "^0.4.0",
+    "concurrently": "^3.4.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^4.0.0",
+    "es6-promise": "^4.1.0",
+    "file-loader": "^0.11.1",
+    "htmlprocessor": "^0.2.4",
+    "http-server": "^0.9.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^4.5.2",
+    "raw-loader": "^0.5.1",
+    "tslint": "^5.1.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.4"
+  }
+}
